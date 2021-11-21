@@ -19,13 +19,9 @@ miu = zeros(1,N);
  
  figure(1);
  plot(u, Y,'.b');
-  ylim([-2,2]);
- xlim([0,deg2rad(360)]);
- xlabel(["radians"]);
- ylabel(["values"]);
  
  % Sapn of x of kernel function
- x = 0:0.01:deg2rad(360);
+ x = 0:0.01:2*pi;
  % Resolution
  h = 0.2;
  K = length(x);
@@ -63,17 +59,17 @@ miu = zeros(1,N);
  plot(x,R_true);
  
  ylim([-1.2,1.2]);
- xlim([0,deg2rad(360)]);
+ xlim([0,2*pi]);
  legend(["kernel","ortogonal","true"])
  xlabel(["radians"]);
- ylabel(["values"]);
+ xlabel(["values"]);
  
  function [res] = ker(x)
     res = normpdf(x);
  end
  
  function [res] = Miu(x)
-    res = sin(x*3);
+    res = sin(x*pi);
  end
  
 function [res] = b_dash(u,Y,i,N)
