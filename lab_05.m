@@ -1,36 +1,52 @@
-%KERNEL ESTIMATION OF REGRESSION FUNCTION
+% KERNEL ESTIMATION OF REGRESSION FUNCTION
+clear all;
+close all;
+rng(241502);
 
-N = 10000;
-Yk = zeros(1,N);
-uk = zeros(1,N);
-R = zeros(1,N);
+N = 1000;
+Y = zeros(1,N);
+u = zeros(1,N);
+miu = zeros(1,N);
 
  for n = 1:N
-     % Unknown function what we going to estimate
-     uk(n) = sin(n/2000);
-     % Output with noise
-     Yk(n) =  uk(n)+ 2*rand()-1;
+     % Input function to our model
+     u(n) = (rand + rand -1);
+     % Unknown model what we going to estimate
+     miu(n) = Miu(u(n));
+     % Output funtion with noise
+     Y(n) = (rand + rand -1) + miu(n);
  end
  
- plot(Yk);
+ figure(1);
+ plot(Y,'.b');
  
  % Sapn of x of kernel function
- x = -1:0.001:1;
+ x = 0:0.001:10;
  % Resolution
- h = 1;
+ h = 0.5;
+ K = length(x);
+ R = zeros(1,K);
  % Kernel method
  for k = 1:K
-    sum_Yk = 0;
-    sum_Y = 0;
+    g = 0;
+    f = 0;
     for n = 1:N
-        sum_Yk = sum_Yk + ker((uk(n)-x(k))/h) * Yk(n);
-        sum_Y = sum_Y + ker(()/h)
+        g = g + Y(n) * ker((u(n)-x(k))/h);
+        f = f + ker((u(n)-x(k))/h);
     end
-    R(u) = sum_Yk / sum_Y;
+    R(k) = g / f;
     
  end
  
+ figure(2);
+ plot(x,R);
+ 
  function [res] = ker(x)
-    res = 1;
+    res = normpdf(x);
  end
+ 
+ function [res] = Miu(x)
+    res = sin(x);
+ end
+ 
  
