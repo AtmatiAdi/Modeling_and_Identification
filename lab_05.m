@@ -21,8 +21,10 @@ miu = zeros(1,N);
  plot(u, Y,'.b');
   ylim([-2,2]);
  xlim([0,deg2rad(360)]);
- xlabel(["radians"]);
- ylabel(["values"]);
+ xlabel(["[input] = u"]);
+ ylabel(["[output] = rand + Miu(u)"]);
+ title(["Y = rand + Miu(u)"]);
+ saveas(gcf,'y','epsc')
  
  % Sapn of x of kernel function
  x = 0:0.01:deg2rad(360);
@@ -65,8 +67,10 @@ miu = zeros(1,N);
  ylim([-1.2,1.2]);
  xlim([0,deg2rad(360)]);
  legend(["kernel","ortogonal","true"])
- xlabel(["radians"]);
- ylabel(["values"]);
+ xlabel(["[input] = u"]);
+ ylabel(["[output] = Miu(u)"]);
+ title(["Estimated and real Miu"]);
+ saveas(gcf,'miu','epsc')
  
  function [res] = ker(x)
     res = normpdf(x);
