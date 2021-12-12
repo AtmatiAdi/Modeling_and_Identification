@@ -1,4 +1,5 @@
 clear all;
+close all;
 rng(241502);
 
 N = 1000;
@@ -21,10 +22,26 @@ for x = X
     end
     j = j + 1;
 end
+fd = fd/N;
+plot(X,fd,'.');
+hold on;
 
+j = 1;
+for x = X
+    for i = 1:5
+        aid = 0;
+        for n = 1:N
+            aid = aid + fi2(i,xd(n));
+        end
+        fd(j) = fd(j) + aid * fi2(i,x);
+    end
+    j = j + 1;
+end
+fd = fd/N + 1/2;
 plot(X,fd,'.');
 
-function [res] = fi2(i,x)
+
+function [res] = fi(i,x)
 pi = 3.14;
     if i == 1
         res = 1/sqrt(2);
@@ -35,8 +52,7 @@ pi = 3.14;
     end
 end
 
-function [res] = fi(i,x)
-pi = 3.14;
+function [res] = fi2(i,x)
     switch i
         case 1
             res = 1/2 * x;
