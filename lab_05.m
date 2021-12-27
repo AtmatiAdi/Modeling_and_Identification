@@ -10,7 +10,6 @@ miu = zeros(1,N);
  for n = 1:N
      % Input function (0 to 360 degrees) to our model
      u(n) = deg2rad(rand*360);
-     %u(n) = rand();
      % Unknown model what we going to estimate
      miu(n) = Miu(u(n));
      % Output funtion with noise
