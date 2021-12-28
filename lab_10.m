@@ -38,9 +38,17 @@ for n = S+1:N
 end
 
 figure(1)
-plot(gamma)
+plot(gamma,'*')
+title(["Gamma values"]);
+ylabel(["gamma value"]);
+xlabel(["gamma number"]);
+saveas(gcf,'gamma','epsc')
+
 figure(2)
 plot(Y)
 hold on
 plot(Y_)
+xlabel(["time"]);
 legend(["OBJECT","MODEL"])
+title(["System and Model output"]);
+saveas(gcf,'y','epsc')
